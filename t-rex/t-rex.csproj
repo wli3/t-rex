@@ -7,8 +7,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TRexLib\TRexLib.csproj">
-    </ProjectReference>
+    <ProjectReference Include="..\TRexLib\TRexLib.csproj" />
   </ItemGroup>
   <Import Condition="'$(PackTool)' == 'true' " Project="..\build\toolpack.target" />
 </Project>
