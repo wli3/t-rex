@@ -1,5 +1,5 @@
 artifacts:
-  - path: '**\*.nupkg'
+  - path: '**\t-rex*.nupkg'
 
 configuration:
   - Release
