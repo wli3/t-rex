@@ -13,4 +13,4 @@ Write-Information "dotnet SDK exists skip"
 $env:PATH = "$DotNetRoot;$env:PATH"
 
 dotnet build TRex.sln -r win10-x64
-dotnet publish t-rex/t-rex.csproj -r win10-x64 -f netcoreapp2.0
+dotnet pack t-rex/t-rex.csproj
