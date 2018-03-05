@@ -1,11 +1,25 @@
 <Project>
   <PropertyGroup>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificContentInPackage>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificBuildOutput);AddPackageFiles</TargetsForTfmSpecificContentInPackage>
     <PackageType>DotnetTool</PackageType>
     <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
-  <Target Name="GetMyPackageFiles" DependsOnTargets="Publish">
 
+  <ItemGroup>
+    <PackageReference Update="@(PackageReference)">
+      <PrivateAssets>All</PrivateAssets>
+      <Publish Condition=" '%(PackageReference.Publish)' != 'false' ">true</Publish>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Update="@(ProjectReference)">
+      <PrivateAssets>All</PrivateAssets>
+      <Publish Condition=" '%(ProjectReference.Publish)' != 'false' ">true</Publish>
+    </ProjectReference>
+  </ItemGroup>
+
+  <Target Name="AddPackageFiles" DependsOnTargets="Publish">
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(PublishDir)/**/*.*">
         <PackagePath>tools/$(targetframework)/any</PackagePath>
@@ -18,11 +32,4 @@
       <PackagePath>tools/$(targetframework)/any</PackagePath>
     </TfmSpecificPackageFile>
   </ItemGroup>
-
-   <ItemGroup>
-     <PackageReference Update="@(PackageReference)">
-       <PrivateAssets>All</PrivateAssets>
-       <Publish Condition=" '%(PackageReference.Publish)' != 'false' ">true</Publish>
-     </PackageReference>
-   </ItemGroup>
 </Project>
