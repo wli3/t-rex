@@ -11,7 +11,6 @@ if (!(Test-Path $DotNetRoot)) {
     Invoke-Expression -Command "$DotNetInstallScript -Version $DotNetCliVersion -InstallDir $DotNetRoot"
 }
 
-Write-Information "dotnet SDK exists skip"
 $env:PATH = "$DotNetRoot;$env:PATH"
 
 dotnet build TRex.sln -r win10-x64

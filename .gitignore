@@ -29,5 +29,6 @@ Artifacts
 /.stignore
 /.stfolder
 .dotnet
+.vscode
 
 \.vs/
