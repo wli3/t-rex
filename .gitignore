@@ -27,5 +27,6 @@ Artifacts
 *.nupkg
 /.stignore
 /.stfolder
+.dotnet
 
 \.vs/
