@@ -3,10 +3,7 @@ $DotNetRoot = ".dotnet"
 $DotNetInstallScript = Join-Path $DotNetRoot "dotnet-install.ps1"
 $Dotnet = Join-Path $DotNetRoot "dotnet"
 
-if (![System.IO.File]::Exists($Dotnet)) {
-    if (Test-Path $DotNetRoot) {
-        Remove-Item $DotNetRoot -recurse
-    }
+if (!(Test-Path $DotNetRoot)) {
     New-Item -ItemType directory -Path $DotNetRoot
     Invoke-WebRequest "https://dot.net/v1/dotnet-install.ps1" -UseBasicParsing -OutFile $DotNetInstallScript
     Invoke-Expression -Command "$DotNetInstallScript -Version $DotNetCliVersion -InstallDir $DotNetRoot"
